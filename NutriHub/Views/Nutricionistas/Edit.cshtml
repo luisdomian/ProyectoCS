@@ -1,0 +1,50 @@
+﻿@model NutriHub.Models.Nutricionista
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Nutricionista</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Nutricionista</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.cedula)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.licencia,"Licencia:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.licencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.licencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <label for="sexo">Seleccione sexo:</label>
+                    <select name="sexo" id="sexo">
+                        <option value="true">Masculino</option>
+                        <option value="false">Femenino</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>

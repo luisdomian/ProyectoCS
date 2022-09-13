@@ -1,0 +1,36 @@
+﻿@model NutriHub.Models.direccionUsuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>desea eliminar esta dirección?</h3>
+<div>
+    <h4>direccionUsuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Usuario.nombreUsuario, "Nombre del usuario:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Usuario.nombreUsuario)
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

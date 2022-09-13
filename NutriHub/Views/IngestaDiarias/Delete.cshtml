@@ -1,0 +1,60 @@
+﻿@model NutriHub.Models.IngestaDiaria
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Desea eliminar esta ingesta?</h3>
+<div>
+    <h4>Ingesta Diaria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.vet, "Vet:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.vet)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.porcentaje, "Porcentaje:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.porcentaje)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Nutriente1.nombre, "Nutriente:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Nutriente1.nombre)
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

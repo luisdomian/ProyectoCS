@@ -1,0 +1,50 @@
+﻿@model NutriHub.Models.Nutriente
+
+@{
+    ViewBag.Title = "Eliminar nutriente";
+}
+
+<h2>Eliminar</h2>
+
+<div class="form-group col-md-7">
+    <div class="label">
+        <h3>¿Desea eliminar el nutriente?</h3>
+    </div>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <div class="form-group col-md-10">
+                <div class="label">
+                    @Html.LabelFor(model => model.nombre, "Nombre del nutriente:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="col-md-10">
+                <div class="label">
+                    <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+                    @Html.ActionLink("Volver a la lista", "Index", new { id = Model.idNutriente })
+                </div>
+            </div>
+        </div>
+    }
+

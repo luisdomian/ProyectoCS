@@ -1,0 +1,15 @@
+﻿body {
+}
+
+containter #h2 {
+    font-size: 3.5rem;
+    margin: 3% 10% 3% 30%;
+}
+
+.usuario {
+    margin-bottom: 3%;
+}
+
+.password {
+    position: center;
+}

@@ -1,0 +1,90 @@
+﻿@model NutriHub.Models.PlanNutricional
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanNutricional</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.vet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.porcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alimento.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alimento.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IngestaDiaria.idIngesta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IngestaDiaria.idIngesta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutricionista1.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutricionista1.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutriente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutriente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.semana.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.semana.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tiempoComida1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tiempoComida1.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idPlan }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

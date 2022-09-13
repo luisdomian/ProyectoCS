@@ -1,0 +1,66 @@
+﻿@model NutriHub.Models.PacientePlanNutricional
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>PacientePlanNutricional</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.estado, "Nombre:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.estado)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.kcal, "Kcal:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.kcal)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Paciente.ocupacion, "Ocupación:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Paciente.ocupacion)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.PlanNutricional.proposito, "Proposito:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.PlanNutricional.proposito)
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

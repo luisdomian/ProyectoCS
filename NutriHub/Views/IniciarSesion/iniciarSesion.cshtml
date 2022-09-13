@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.id = -1;
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using NutriHub.Models
+@model IniciarSesionMetaData
+
+
+<section class="Form my-4 mx-5">
+    <br>
+    <br>
+    <br>
+    <br>
+        
+        <div class="container" style="position:center">
+            <a class="navbar-brand"><img src="~/img/Final.png" class="logo-brand" alt="logo" /> </a>
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="~/img/5.jpg" style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;">
+                </div>
+                <div class="col-lg-7" style="background-color: #ede9e9; border-top-right-radius: 30px; border-bottom-right-radius: 30px; ">
+                    <br>
+                    @using (Html.BeginForm("iniciarSesion", "IniciarSesion", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-row">
+                            <div class="col-lg-7" style=" padding-left: 228px;">
+
+                                @Html.DisplayNameFor(model => model.inputValidacion)
+
+                                @Html.TextBoxFor(model => model.inputValidacion)
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="form-row" style=" padding-left: 225px;">
+                            <div class="col-lg-7">
+                                @Html.DisplayNameFor(model => model.contrasenna)
+
+                                @Html.PasswordFor(model => model.contrasenna)
+                                <br>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row" style=" padding-left: 250px;">
+                            <div class="col-sm-6">
+                                <button class="btn-index" type="submit">
+                                    Iniciar Sesión
+                                </button>
+                            </div>                         
+                        </div>
+                        <br>
+                        <div class="form-row" style=" padding-left: 260px;">
+                            <div class="col-sm-6">
+                                @*<button class="btn-index" href="@Url.Action("Index", "RegistrarUsuario")">
+                                Registrarse
+                            </button>*@
+                                <a href="@Url.Action("Index", "RegistrarUsuario")" class="btn-index">Registrarse</a>
+                            </div>
+                        </div>
+                        <div style="padding-left:50px;">
+                            <div id="msgError">
+                                <div class="alert alert-danger" style="max-width: 550px; max-height: 80px;">
+                                    <h5 style="font-size: 14px;"><strong>Error:</strong> </h5>
+                                    <p>Nombre de usuario o contraseña incorrecta</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+</section>
+@if (ViewBag.ErrorMessage != null)
+{
+    <script type="text/javascript">
+        document.getElementById("msgError").style.display = "inline";
+    </script>
+}

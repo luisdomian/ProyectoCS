@@ -1,0 +1,51 @@
+﻿@model NutriHub.Models.Usuario
+
+@{ 
+    ViewBag.Title = "Detalles de usuario";
+}
+
+
+<div class="view-container">
+
+    <h2>Detalles del usuario</h2>
+    <div>
+        <h4>Datos Personales</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Nombre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombreUsuario)
+            </dd>
+
+            <dt>
+                Correo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.correo)
+            </dd>
+
+            <dt>
+                Contraseña
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.contrasenna)
+            </dd>
+
+            <dt>
+                Cédula
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nutricionista.cedula)
+            </dd>
+        </dl>
+        <a>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.cedula })
+        </a>
+    </div>
+</div>

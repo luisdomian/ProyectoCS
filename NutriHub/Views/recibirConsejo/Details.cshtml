@@ -1,0 +1,42 @@
+﻿@model NutriHub.Models.recibirConsejo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>recibirConsejo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoConsejo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoConsejo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consejo.tituloConsejo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consejo.tituloConsejo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.nombreUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

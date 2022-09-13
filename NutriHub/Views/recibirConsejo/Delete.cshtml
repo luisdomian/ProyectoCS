@@ -1,0 +1,48 @@
+﻿@model NutriHub.Models.recibirConsejo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>recibirConsejo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoConsejo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoConsejo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consejo.tituloConsejo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consejo.tituloConsejo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.nombreUsuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,46 @@
+﻿@model NutriHub.Models.Nutriente
+
+@{
+    ViewBag.Title = "Detalles del nutriente";
+}
+
+<h2>Detalles del nutriente</h2>
+
+<div>
+    <div class="form-group col-md-7">
+        <div class="label">
+            <h4>Nutriente</h4>
+        </div>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <div class="form-group col-md-10">
+                <div class="label">
+                    @Html.LabelFor(model => model.nombre, "Nombre del nutriente:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="form-group col-md-10">
+        <div class="col-md-10">
+            <div class="label">
+                @Html.ActionLink("Editar", "Edit", new { id = Model.idNutriente }) |
+                @Html.ActionLink("Volver a la lista", "Index", new { id = Model.idNutriente })
+            </div>
+        </div>
+    </div>
+</p>

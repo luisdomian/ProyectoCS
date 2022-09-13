@@ -1,0 +1,92 @@
+﻿@model NutriHub.Models.PlanNutricionalPaciente
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Crear plan nutricional</h2>
+
+
+@Html.AntiForgeryToken()
+
+<div class="container">
+    <div class="form-horizontal">
+        <h4>Paciente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.paciente, "Paciente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idPaciente", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.paciente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.alimento.idAlimento, "idAlimento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idAlimento", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.alimento.idAlimento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.IngestaDiaria.vet,"VET", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IngestaDiaria.vet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IngestaDiaria.vet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @*<div class="form-group col-md-7">
+            @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label for="sexo">Seleccione sexo:</label>
+                <select name="sexo" id="sexo">
+                    <option value=true>Masculino</option>
+                    <option value=false>Femenino</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.ocupacion, "Ocupación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ocupacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ocupacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", placeholder = "AAAA-MM-DD " } })
+                @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-7">
+            @Html.LabelFor(model => model.edad, "Edad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.edad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.edad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-7">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </div>*@
+    </div>
+
+
+    <div>
+        <a href="@Url.Action("Index", "Home", new { id = ViewBag.id}, null)" class="btn btn-home topmargin-sm">Volver<i class="navbar-toggler-icon ion-md-arrow-dropright-circle"></i></a>
+    </div>
+
+
+</div>

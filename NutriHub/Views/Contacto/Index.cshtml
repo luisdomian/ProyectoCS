@@ -1,0 +1,64 @@
+﻿@model NutriHub.Models.Contacto
+
+@{
+    ViewBag.Title = "Contacto";
+    Layout = "~/Views/Shared/_LayoutPa.cshtml";
+}
+<div class="container body-content">
+
+    <h2>Formulario de contacto</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, "Su nombre", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.correo, "Su correo electrónico", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.correo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.correo, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, "Su contraseña", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.password, new { @class = "form-control", Type = "password" })
+                @Html.ValidationMessageFor(model => model.password, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.asunto, "Asunto", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.asunto, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.asunto, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.mensaje, "Mensaje", new { @class = "col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.mensaje, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mensaje, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+            </div>
+        </div>
+
+    }
+
+
+    <h3> @ViewBag.Message </h3>
+
+    <h3> @ViewBag.Error </h3>
+
+</div>
+

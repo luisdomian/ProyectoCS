@@ -1,0 +1,62 @@
+﻿@model IEnumerable<NutriHub.Models.Nutricionista>
+
+@{
+    ViewBag.Title = "Lista de pacientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="view-container">
+    <h2>Lista de pacientes</h2>
+
+    <p>
+        @Html.ActionLink("Crear nuevo paciente", "Create", new { id = ViewBag.id})
+    </p>
+
+    <table class="table table-striped table-bordered" id="example">
+        <thead>
+        <tr>
+            <th>
+                Ocupación
+            </th>
+            <th>
+                Fecha de nacimiento
+            </th>
+            <th>
+                Edad
+            </th>
+            <th>
+                Nombre del paciente
+            </th>
+            <th>
+                Opciones
+            </th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Paciente.ocupacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Paciente.fechaNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Paciente.edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.nombreUsuario)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Pacientes", new { id = item.cedula })" class="btn-index">Editar<i class=" icon ion-md-create"></i></a>
+                    <a href="@Url.Action("Details", "Pacientes", new { id = item.cedula })" class="btn-index">Detalles  <i class=" ion-md-add"></i></a>
+                    <a href="@Url.Action("Delete", "Pacientes", new { id = item.cedula })" class="btn-index">Eliminar<i class=" icon ion-md-trash"></i></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

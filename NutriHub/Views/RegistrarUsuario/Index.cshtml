@@ -1,0 +1,126 @@
+﻿@model NutriHub.Models.registrarUsuario
+@{
+    ViewBag.id = -1;
+    Layout = "~/Views/Shared/_LayoutRegistrarUsuario.cshtml";
+}
+
+
+
+<h2 style=" font-size: 3.5rem; margin: 3% 10% 3% 35%;">Registro de usuario</h2>
+
+
+<div class="container">
+    @using (Html.BeginForm("registrarUsuario", "registrarUsuario", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="view-container">
+            <div class="col-md-7" id="msgError" style="display:none">
+                @*<div class="col-md-5" id="msgError">*@
+                <div class="alert alert-danger">
+                    <p><strong>Error:</strong> </p>
+                    <p>@ViewBag.ErrorMessage</p>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.cedula, "Cédula", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombreUsuario, "Nombre de usuario", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nombreUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.contrasenna, "Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.contrasenna, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.contrasenna, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group col-md-10">
+                @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <select name="sexo" id="sexo">
+                        <option value=true>Masculino</option>
+                        <option value=false>Femenino</option>
+                    </select>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.contrasenna, "Correo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @* <div class="col-md-12" id="paciente" style="display: none"> 
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.ocupacion, "Ocupación", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ocupacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextBoxFor(model => model.ocupacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <\div> *@
+
+            @* <div class="col-md-12" id="nutricionista" style="display: none"> 
+            
+            <\div> *@
+
+            <div class="col-md-12" id="tipoUsuario ">
+                @* <div class="col-md-6" id="btnNutricionista"> *@
+                    <button onclick="crearNutri()">btnNutricionista</button>
+                @* </div> *@
+                @* <div class="col-md-6" id="btnPaciente"> *@
+                    <button onclick="crearPaciente()">btnPaciente</button>
+                @* </div> *@
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12" style="position:center">
+                <button class="btn btn-success" type="submit">
+                    Registrar
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <script type="text/javascript">
+        document.getElementById("msgError").style.display = "inline";
+    </script>
+}
+<script type="text/javascript">
+        $(document).ready({
+            crearNutri();
+        ,crearPaciente();
+        });
+
+        function crearNutri() {
+            document.getElementById("licenciaID").style.display = "inline";
+        }
+
+        function crearNutri() {
+            document.getElementById("pacienteInfo").style.display = "inline";
+        }
+</script>

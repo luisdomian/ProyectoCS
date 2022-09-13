@@ -1,0 +1,116 @@
+﻿@model NutriHub.Models.Cita
+
+@{
+    ViewBag.Title = "Detalles de la cita";
+}
+
+<h2>Detalles de la cita</h2>
+
+<div>
+    <div class="form-group col-md-7">
+        <div class="label">
+            <h4>Cita</h4>
+        </div>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.fecha, "Fecha:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.fecha)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.hora, "Hora:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.hora)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.estado, "Estado:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.estado)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.Nutricionista.Usuario.nombreUsuario, "Nutricionista:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.Nutricionista.Usuario.nombreUsuario)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.Paciente.ocupacion, "Ocupación:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.Paciente.ocupacion)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div>
+        <div class="form-group col-md-10">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.idCita }) |
+            @Html.ActionLink("Volver a la lista", "Index", new { id = Model.idNutricionista })
+        </div>
+    </div>
+</p>

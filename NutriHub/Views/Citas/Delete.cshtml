@@ -1,0 +1,119 @@
+﻿@model NutriHub.Models.Cita
+
+@{
+    ViewBag.Title = "Eliminar cita";
+}
+
+<h2>Eliminar cita</h2>
+
+<div class="form-group col-md-7">
+    <div class="label">
+        <h3>¿Seguro que desea eliminar esta cita?</h3>
+    </div>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.fecha, "Fecha:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.fecha)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.hora, "Hora:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.hora)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.estado, "Estado:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.estado)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-10">
+                <div class="label">
+                    @Html.LabelFor(model => model.Nutricionista.cedula, "Cedula Nutricionista:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.Nutricionista.cedula)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            <div class="form-group col-md-7">
+                <div class="label">
+                    @Html.LabelFor(model => model.Paciente.ocupacion, "Ocupación:", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+        </dt>
+
+        <dd>
+            <div class="form-group col-md-10">
+                <div class="col-md-10">
+                    <div class="label">
+                        @Html.DisplayFor(model => model.Paciente.ocupacion)
+                    </div>
+                </div>
+            </div>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+            @Html.ActionLink("Volver a la lista", "Index", new { id = Model.idNutricionista })
+        </div>
+    }
+</div>

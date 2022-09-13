@@ -1,0 +1,1444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="exped_nutricionalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="idAlimento" />
+            <PropertyRef Name="nutriente" />
+          </Key>
+          <Property Name="idAlimento" Type="numeric" Precision="6" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nutriente" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="idCita" />
+          </Key>
+          <Property Name="idCita" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idNutricionista" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idPaciente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="0" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consejo">
+          <Key>
+            <PropertyRef Name="idConsejo" />
+          </Key>
+          <Property Name="idConsejo" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tituloConsejo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mensajeConsejo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="referencia" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="direccionUsuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="provincia" />
+            <PropertyRef Name="canton" />
+            <PropertyRef Name="distrito" />
+          </Key>
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="provincia" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="canton" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="distrito" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngestaDiaria">
+          <Key>
+            <PropertyRef Name="idIngesta" />
+          </Key>
+          <Property Name="idIngesta" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nutriente" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="vet" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="porcentaje" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListaCompras">
+          <Key>
+            <PropertyRef Name="idLista" />
+          </Key>
+          <Property Name="idLista" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAlimento" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nutriente" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nutricionista">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="licencia" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="sexo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nutriente">
+          <Key>
+            <PropertyRef Name="idNutriente" />
+          </Key>
+          <Property Name="idNutriente" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="sexo" Type="bit" />
+          <Property Name="ocupacion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="edad" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PacientePlanNutricional">
+          <Key>
+            <PropertyRef Name="idPaciente" />
+            <PropertyRef Name="idPlan" />
+            <PropertyRef Name="fecha" />
+          </Key>
+          <Property Name="idPaciente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idPlan" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="kcal" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Padecimiento">
+          <Key>
+            <PropertyRef Name="idPadecimiento" />
+          </Key>
+          <Property Name="idPadecimiento" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tratamiento" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PadecimientoPaciente">
+          <Key>
+            <PropertyRef Name="idPadecimiento" />
+            <PropertyRef Name="paciente" />
+          </Key>
+          <Property Name="idPadecimiento" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="paciente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fechaDiagnostico" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PlanNutricional">
+          <Key>
+            <PropertyRef Name="idPlan" />
+          </Key>
+          <Property Name="idPlan" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nutricionista" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idIngesta" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idAlimento" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idNutriente" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="vet" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="tiempoComida" Type="int" Nullable="false" />
+          <Property Name="porcion" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="proposito" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="dia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Progreso">
+          <Key>
+            <PropertyRef Name="idProgreso" />
+          </Key>
+          <Property Name="idProgreso" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paciente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="talla" Type="int" Nullable="false" />
+          <Property Name="peso" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="porcentAgua" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="porcentMusculo" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="porcentGrasa" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="circunfBraquial" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="circunfPantorrilla" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="edad" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recibirConsejo">
+          <Key>
+            <PropertyRef Name="idConsejo" />
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idConsejo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="tipoConsejo" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semana">
+          <Key>
+            <PropertyRef Name="idDia" />
+          </Key>
+          <Property Name="idDia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tiempoComida">
+          <Key>
+            <PropertyRef Name="idTiempoComida" />
+          </Key>
+          <Property Name="idTiempoComida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idUsuario" Type="numeric" Precision="6" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombreUsuario" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="correo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contrasenna" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Alimento_ListaCompras">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ListaCompras" Type="Self.ListaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Principal>
+            <Dependent Role="ListaCompras">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_PlanNutricional">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="idNutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consejo_RecibirConsejo">
+          <End Role="Consejo" Type="Self.Consejo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recibirConsejo" Type="Self.recibirConsejo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consejo">
+              <PropertyRef Name="idConsejo" />
+            </Principal>
+            <Dependent Role="recibirConsejo">
+              <PropertyRef Name="idConsejo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dia">
+          <End Role="semana" Type="Self.semana" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semana">
+              <PropertyRef Name="idDia" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="dia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingesta_PlanNutricional">
+          <End Role="IngestaDiaria" Type="Self.IngestaDiaria" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngestaDiaria">
+              <PropertyRef Name="idIngesta" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idIngesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutricionista_Cita">
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="idNutricionista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutricionista_PlanNutricional">
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="nutricionista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_Alimento">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_IngestaDiaria">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngestaDiaria" Type="Self.IngestaDiaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="IngestaDiaria">
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_PlanNutricional">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idNutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Cita">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_PacientePlanNutricional">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientePlanNutricional" Type="Self.PacientePlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PacientePlanNutricional">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_PadecimientoPaciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PadecimientoPaciente" Type="Self.PadecimientoPaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PadecimientoPaciente">
+              <PropertyRef Name="paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Progreso">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Progreso" Type="Self.Progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Progreso">
+              <PropertyRef Name="paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Padecimiento_PadecimientoPaciente">
+          <End Role="Padecimiento" Type="Self.Padecimiento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PadecimientoPaciente" Type="Self.PadecimientoPaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padecimiento">
+              <PropertyRef Name="idPadecimiento" />
+            </Principal>
+            <Dependent Role="PadecimientoPaciente">
+              <PropertyRef Name="idPadecimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plan_PacientePlanNutricional">
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientePlanNutricional" Type="Self.PacientePlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanNutricional">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="PacientePlanNutricional">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiempoComida">
+          <End Role="tiempoComida" Type="Self.tiempoComida" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tiempoComida">
+              <PropertyRef Name="idTiempoComida" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="tiempoComida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="direccionUsuario" Type="Self.direccionUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="direccionUsuario">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Nutricionista">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Paciente">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_RecibirConsejo">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recibirConsejo" Type="Self.recibirConsejo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="recibirConsejo">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="exped_nutricionalModelStoreContainer">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consejo" EntityType="Self.Consejo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="direccionUsuario" EntityType="Self.direccionUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngestaDiaria" EntityType="Self.IngestaDiaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListaCompras" EntityType="Self.ListaCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nutricionista" EntityType="Self.Nutricionista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nutriente" EntityType="Self.Nutriente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PacientePlanNutricional" EntityType="Self.PacientePlanNutricional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Padecimiento" EntityType="Self.Padecimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PadecimientoPaciente" EntityType="Self.PadecimientoPaciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanNutricional" EntityType="Self.PlanNutricional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Progreso" EntityType="Self.Progreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recibirConsejo" EntityType="Self.recibirConsejo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semana" EntityType="Self.semana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tiempoComida" EntityType="Self.tiempoComida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alimento_ListaCompras" Association="Self.FK_Alimento_ListaCompras">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="ListaCompras" EntitySet="ListaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_PlanNutricional" Association="Self.FK_Alimento_PlanNutricional">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consejo_RecibirConsejo" Association="Self.FK_Consejo_RecibirConsejo">
+            <End Role="Consejo" EntitySet="Consejo" />
+            <End Role="recibirConsejo" EntitySet="recibirConsejo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dia" Association="Self.FK_Dia">
+            <End Role="semana" EntitySet="semana" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingesta_PlanNutricional" Association="Self.FK_Ingesta_PlanNutricional">
+            <End Role="IngestaDiaria" EntitySet="IngestaDiaria" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutricionista_Cita" Association="Self.FK_Nutricionista_Cita">
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutricionista_PlanNutricional" Association="Self.FK_Nutricionista_PlanNutricional">
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_Alimento" Association="Self.FK_Nutriente_Alimento">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_IngestaDiaria" Association="Self.FK_Nutriente_IngestaDiaria">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="IngestaDiaria" EntitySet="IngestaDiaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_PlanNutricional" Association="Self.FK_Nutriente_PlanNutricional">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Cita" Association="Self.FK_Paciente_Cita">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_PacientePlanNutricional" Association="Self.FK_Paciente_PacientePlanNutricional">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="PacientePlanNutricional" EntitySet="PacientePlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_PadecimientoPaciente" Association="Self.FK_Paciente_PadecimientoPaciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="PadecimientoPaciente" EntitySet="PadecimientoPaciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Progreso" Association="Self.FK_Paciente_Progreso">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Progreso" EntitySet="Progreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Padecimiento_PadecimientoPaciente" Association="Self.FK_Padecimiento_PadecimientoPaciente">
+            <End Role="Padecimiento" EntitySet="Padecimiento" />
+            <End Role="PadecimientoPaciente" EntitySet="PadecimientoPaciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plan_PacientePlanNutricional" Association="Self.FK_Plan_PacientePlanNutricional">
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+            <End Role="PacientePlanNutricional" EntitySet="PacientePlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiempoComida" Association="Self.FK_TiempoComida">
+            <End Role="tiempoComida" EntitySet="tiempoComida" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario" Association="Self.FK_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="direccionUsuario" EntitySet="direccionUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Nutricionista" Association="Self.FK_Usuario_Nutricionista">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Paciente" Association="Self.FK_Usuario_Paciente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_RecibirConsejo" Association="Self.FK_Usuario_RecibirConsejo">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="recibirConsejo" EntitySet="recibirConsejo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="exped_nutricionalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="idAlimento" />
+            <PropertyRef Name="nutriente" />
+          </Key>
+          <Property Name="idAlimento" Type="Decimal" Precision="6" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nutriente" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ListaCompras" Relationship="Self.FK_Alimento_ListaCompras" FromRole="Alimento" ToRole="ListaCompras" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Alimento_PlanNutricional" FromRole="Alimento" ToRole="PlanNutricional" />
+          <NavigationProperty Name="Nutriente1" Relationship="Self.FK_Nutriente_Alimento" FromRole="Alimento" ToRole="Nutriente" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="idCita" />
+          </Key>
+          <Property Name="idCita" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idNutricionista" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idPaciente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Nutricionista" Relationship="Self.FK_Nutricionista_Cita" FromRole="Cita" ToRole="Nutricionista" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Paciente_Cita" FromRole="Cita" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Consejo">
+          <Key>
+            <PropertyRef Name="idConsejo" />
+          </Key>
+          <Property Name="idConsejo" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tituloConsejo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mensajeConsejo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="recibirConsejo" Relationship="Self.FK_Consejo_RecibirConsejo" FromRole="Consejo" ToRole="recibirConsejo" />
+        </EntityType>
+        <EntityType Name="direccionUsuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="provincia" />
+            <PropertyRef Name="canton" />
+            <PropertyRef Name="distrito" />
+          </Key>
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="canton" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="distrito" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario" FromRole="direccionUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="IngestaDiaria">
+          <Key>
+            <PropertyRef Name="idIngesta" />
+          </Key>
+          <Property Name="idIngesta" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nutriente" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="vet" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="porcentaje" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Ingesta_PlanNutricional" FromRole="IngestaDiaria" ToRole="PlanNutricional" />
+          <NavigationProperty Name="Nutriente1" Relationship="Self.FK_Nutriente_IngestaDiaria" FromRole="IngestaDiaria" ToRole="Nutriente" />
+        </EntityType>
+        <EntityType Name="ListaCompras">
+          <Key>
+            <PropertyRef Name="idLista" />
+          </Key>
+          <Property Name="idLista" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAlimento" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nutriente" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Alimento_ListaCompras" FromRole="ListaCompras" ToRole="Alimento" />
+        </EntityType>
+        <EntityType Name="Nutricionista">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="licencia" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="sexo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Nutricionista_Cita" FromRole="Nutricionista" ToRole="Cita" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Nutricionista_PlanNutricional" FromRole="Nutricionista" ToRole="PlanNutricional" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Nutricionista" FromRole="Nutricionista" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Nutriente">
+          <Key>
+            <PropertyRef Name="idNutriente" />
+          </Key>
+          <Property Name="idNutriente" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Nutriente_Alimento" FromRole="Nutriente" ToRole="Alimento" />
+          <NavigationProperty Name="IngestaDiaria" Relationship="Self.FK_Nutriente_IngestaDiaria" FromRole="Nutriente" ToRole="IngestaDiaria" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Nutriente_PlanNutricional" FromRole="Nutriente" ToRole="PlanNutricional" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="sexo" Type="Boolean" />
+          <Property Name="ocupacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="edad" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Paciente_Cita" FromRole="Paciente" ToRole="Cita" />
+          <NavigationProperty Name="PacientePlanNutricional" Relationship="Self.FK_Paciente_PacientePlanNutricional" FromRole="Paciente" ToRole="PacientePlanNutricional" />
+          <NavigationProperty Name="PadecimientoPaciente" Relationship="Self.FK_Paciente_PadecimientoPaciente" FromRole="Paciente" ToRole="PadecimientoPaciente" />
+          <NavigationProperty Name="Progreso" Relationship="Self.FK_Paciente_Progreso" FromRole="Paciente" ToRole="Progreso" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Paciente" FromRole="Paciente" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PacientePlanNutricional">
+          <Key>
+            <PropertyRef Name="idPaciente" />
+            <PropertyRef Name="idPlan" />
+            <PropertyRef Name="fecha" />
+          </Key>
+          <Property Name="idPaciente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idPlan" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="kcal" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Paciente_PacientePlanNutricional" FromRole="PacientePlanNutricional" ToRole="Paciente" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Plan_PacientePlanNutricional" FromRole="PacientePlanNutricional" ToRole="PlanNutricional" />
+        </EntityType>
+        <EntityType Name="Padecimiento">
+          <Key>
+            <PropertyRef Name="idPadecimiento" />
+          </Key>
+          <Property Name="idPadecimiento" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tratamiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PadecimientoPaciente" Relationship="Self.FK_Padecimiento_PadecimientoPaciente" FromRole="Padecimiento" ToRole="PadecimientoPaciente" />
+        </EntityType>
+        <EntityType Name="PadecimientoPaciente">
+          <Key>
+            <PropertyRef Name="idPadecimiento" />
+            <PropertyRef Name="paciente" />
+          </Key>
+          <Property Name="idPadecimiento" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="paciente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="fechaDiagnostico" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Paciente1" Relationship="Self.FK_Paciente_PadecimientoPaciente" FromRole="PadecimientoPaciente" ToRole="Paciente" />
+          <NavigationProperty Name="Padecimiento" Relationship="Self.FK_Padecimiento_PadecimientoPaciente" FromRole="PadecimientoPaciente" ToRole="Padecimiento" />
+        </EntityType>
+        <EntityType Name="PlanNutricional">
+          <Key>
+            <PropertyRef Name="idPlan" />
+          </Key>
+          <Property Name="idPlan" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nutricionista" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="idIngesta" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idAlimento" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idNutriente" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="vet" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="tiempoComida" Type="Int32" Nullable="false" />
+          <Property Name="porcion" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="proposito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Alimento_PlanNutricional" FromRole="PlanNutricional" ToRole="Alimento" />
+          <NavigationProperty Name="IngestaDiaria" Relationship="Self.FK_Ingesta_PlanNutricional" FromRole="PlanNutricional" ToRole="IngestaDiaria" />
+          <NavigationProperty Name="Nutricionista1" Relationship="Self.FK_Nutricionista_PlanNutricional" FromRole="PlanNutricional" ToRole="Nutricionista" />
+          <NavigationProperty Name="Nutriente" Relationship="Self.FK_Nutriente_PlanNutricional" FromRole="PlanNutricional" ToRole="Nutriente" />
+          <NavigationProperty Name="PacientePlanNutricional" Relationship="Self.FK_Plan_PacientePlanNutricional" FromRole="PlanNutricional" ToRole="PacientePlanNutricional" />
+          <NavigationProperty Name="semana" Relationship="Self.FK_Dia" FromRole="PlanNutricional" ToRole="semana" />
+          <NavigationProperty Name="tiempoComida1" Relationship="Self.FK_TiempoComida" FromRole="PlanNutricional" ToRole="tiempoComida" />
+        </EntityType>
+        <EntityType Name="Progreso">
+          <Key>
+            <PropertyRef Name="idProgreso" />
+          </Key>
+          <Property Name="idProgreso" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="talla" Type="Int32" Nullable="false" />
+          <Property Name="peso" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="porcentAgua" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="porcentMusculo" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="porcentGrasa" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="circunfBraquial" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="circunfPantorrilla" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="edad" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Paciente1" Relationship="Self.FK_Paciente_Progreso" FromRole="Progreso" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="recibirConsejo">
+          <Key>
+            <PropertyRef Name="idConsejo" />
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idConsejo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="tipoConsejo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Consejo" Relationship="Self.FK_Consejo_RecibirConsejo" FromRole="recibirConsejo" ToRole="Consejo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_RecibirConsejo" FromRole="recibirConsejo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="semana">
+          <Key>
+            <PropertyRef Name="idDia" />
+          </Key>
+          <Property Name="idDia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_Dia" FromRole="semana" ToRole="PlanNutricional" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tiempoComida">
+          <Key>
+            <PropertyRef Name="idTiempoComida" />
+          </Key>
+          <Property Name="idTiempoComida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PlanNutricional" Relationship="Self.FK_TiempoComida" FromRole="tiempoComida" ToRole="PlanNutricional" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="idUsuario" Type="Decimal" Precision="6" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="direccionUsuario" Relationship="Self.FK_Usuario" FromRole="Usuario" ToRole="direccionUsuario" />
+          <NavigationProperty Name="Nutricionista" Relationship="Self.FK_Usuario_Nutricionista" FromRole="Usuario" ToRole="Nutricionista" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Usuario_Paciente" FromRole="Usuario" ToRole="Paciente" />
+          <NavigationProperty Name="recibirConsejo" Relationship="Self.FK_Usuario_RecibirConsejo" FromRole="Usuario" ToRole="recibirConsejo" />
+        </EntityType>
+        <Association Name="FK_Alimento_ListaCompras">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ListaCompras" Type="Self.ListaCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Principal>
+            <Dependent Role="ListaCompras">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alimento_PlanNutricional">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="nutriente" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idAlimento" />
+              <PropertyRef Name="idNutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_Alimento">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="Alimento">
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutricionista_Cita">
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="idNutricionista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Cita">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consejo_RecibirConsejo">
+          <End Role="Consejo" Type="Self.Consejo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recibirConsejo" Type="Self.recibirConsejo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consejo">
+              <PropertyRef Name="idConsejo" />
+            </Principal>
+            <Dependent Role="recibirConsejo">
+              <PropertyRef Name="idConsejo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="direccionUsuario" Type="Self.direccionUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="direccionUsuario">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingesta_PlanNutricional">
+          <End Role="IngestaDiaria" Type="Self.IngestaDiaria" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngestaDiaria">
+              <PropertyRef Name="idIngesta" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idIngesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_IngestaDiaria">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngestaDiaria" Type="Self.IngestaDiaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="IngestaDiaria">
+              <PropertyRef Name="nutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutricionista_PlanNutricional">
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="nutricionista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Nutricionista">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Nutricionista" Type="Self.Nutricionista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Nutricionista">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutriente_PlanNutricional">
+          <End Role="Nutriente" Type="Self.Nutriente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutriente">
+              <PropertyRef Name="idNutriente" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="idNutriente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_PacientePlanNutricional">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientePlanNutricional" Type="Self.PacientePlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PacientePlanNutricional">
+              <PropertyRef Name="idPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_PadecimientoPaciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PadecimientoPaciente" Type="Self.PadecimientoPaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="PadecimientoPaciente">
+              <PropertyRef Name="paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Progreso">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Progreso" Type="Self.Progreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Progreso">
+              <PropertyRef Name="paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Paciente">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plan_PacientePlanNutricional">
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientePlanNutricional" Type="Self.PacientePlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanNutricional">
+              <PropertyRef Name="idPlan" />
+            </Principal>
+            <Dependent Role="PacientePlanNutricional">
+              <PropertyRef Name="idPlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Padecimiento_PadecimientoPaciente">
+          <End Role="Padecimiento" Type="Self.Padecimiento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PadecimientoPaciente" Type="Self.PadecimientoPaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padecimiento">
+              <PropertyRef Name="idPadecimiento" />
+            </Principal>
+            <Dependent Role="PadecimientoPaciente">
+              <PropertyRef Name="idPadecimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dia">
+          <End Role="semana" Type="Self.semana" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semana">
+              <PropertyRef Name="idDia" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="dia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiempoComida">
+          <End Role="tiempoComida" Type="Self.tiempoComida" Multiplicity="1" />
+          <End Role="PlanNutricional" Type="Self.PlanNutricional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tiempoComida">
+              <PropertyRef Name="idTiempoComida" />
+            </Principal>
+            <Dependent Role="PlanNutricional">
+              <PropertyRef Name="tiempoComida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_RecibirConsejo">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recibirConsejo" Type="Self.recibirConsejo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="recibirConsejo">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="exped_nutricionalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" />
+          <EntitySet Name="Consejo" EntityType="Self.Consejo" />
+          <EntitySet Name="direccionUsuario" EntityType="Self.direccionUsuario" />
+          <EntitySet Name="IngestaDiaria" EntityType="Self.IngestaDiaria" />
+          <EntitySet Name="ListaCompras" EntityType="Self.ListaCompras" />
+          <EntitySet Name="Nutricionista" EntityType="Self.Nutricionista" />
+          <EntitySet Name="Nutriente" EntityType="Self.Nutriente" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <EntitySet Name="PacientePlanNutricional" EntityType="Self.PacientePlanNutricional" />
+          <EntitySet Name="Padecimiento" EntityType="Self.Padecimiento" />
+          <EntitySet Name="PadecimientoPaciente" EntityType="Self.PadecimientoPaciente" />
+          <EntitySet Name="PlanNutricional" EntityType="Self.PlanNutricional" />
+          <EntitySet Name="Progreso" EntityType="Self.Progreso" />
+          <EntitySet Name="recibirConsejo" EntityType="Self.recibirConsejo" />
+          <EntitySet Name="semana" EntityType="Self.semana" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tiempoComida" EntityType="Self.tiempoComida" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Alimento_ListaCompras" Association="Self.FK_Alimento_ListaCompras">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="ListaCompras" EntitySet="ListaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alimento_PlanNutricional" Association="Self.FK_Alimento_PlanNutricional">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_Alimento" Association="Self.FK_Nutriente_Alimento">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="Alimento" EntitySet="Alimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutricionista_Cita" Association="Self.FK_Nutricionista_Cita">
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Cita" Association="Self.FK_Paciente_Cita">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consejo_RecibirConsejo" Association="Self.FK_Consejo_RecibirConsejo">
+            <End Role="Consejo" EntitySet="Consejo" />
+            <End Role="recibirConsejo" EntitySet="recibirConsejo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario" Association="Self.FK_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="direccionUsuario" EntitySet="direccionUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingesta_PlanNutricional" Association="Self.FK_Ingesta_PlanNutricional">
+            <End Role="IngestaDiaria" EntitySet="IngestaDiaria" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_IngestaDiaria" Association="Self.FK_Nutriente_IngestaDiaria">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="IngestaDiaria" EntitySet="IngestaDiaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutricionista_PlanNutricional" Association="Self.FK_Nutricionista_PlanNutricional">
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Nutricionista" Association="Self.FK_Usuario_Nutricionista">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Nutricionista" EntitySet="Nutricionista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutriente_PlanNutricional" Association="Self.FK_Nutriente_PlanNutricional">
+            <End Role="Nutriente" EntitySet="Nutriente" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_PacientePlanNutricional" Association="Self.FK_Paciente_PacientePlanNutricional">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="PacientePlanNutricional" EntitySet="PacientePlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_PadecimientoPaciente" Association="Self.FK_Paciente_PadecimientoPaciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="PadecimientoPaciente" EntitySet="PadecimientoPaciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Progreso" Association="Self.FK_Paciente_Progreso">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Progreso" EntitySet="Progreso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Paciente" Association="Self.FK_Usuario_Paciente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plan_PacientePlanNutricional" Association="Self.FK_Plan_PacientePlanNutricional">
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+            <End Role="PacientePlanNutricional" EntitySet="PacientePlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Padecimiento_PadecimientoPaciente" Association="Self.FK_Padecimiento_PadecimientoPaciente">
+            <End Role="Padecimiento" EntitySet="Padecimiento" />
+            <End Role="PadecimientoPaciente" EntitySet="PadecimientoPaciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dia" Association="Self.FK_Dia">
+            <End Role="semana" EntitySet="semana" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiempoComida" Association="Self.FK_TiempoComida">
+            <End Role="tiempoComida" EntitySet="tiempoComida" />
+            <End Role="PlanNutricional" EntitySet="PlanNutricional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_RecibirConsejo" Association="Self.FK_Usuario_RecibirConsejo">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="recibirConsejo" EntitySet="recibirConsejo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="exped_nutricionalModelStoreContainer" CdmEntityContainer="exped_nutricionalEntities">
+          <EntitySetMapping Name="Alimento">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Alimento">
+              <MappingFragment StoreEntitySet="Alimento">
+                <ScalarProperty Name="idAlimento" ColumnName="idAlimento" />
+                <ScalarProperty Name="nutriente" ColumnName="nutriente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cita">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="idCita" ColumnName="idCita" />
+                <ScalarProperty Name="idNutricionista" ColumnName="idNutricionista" />
+                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consejo">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Consejo">
+              <MappingFragment StoreEntitySet="Consejo">
+                <ScalarProperty Name="idConsejo" ColumnName="idConsejo" />
+                <ScalarProperty Name="tituloConsejo" ColumnName="tituloConsejo" />
+                <ScalarProperty Name="mensajeConsejo" ColumnName="mensajeConsejo" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="direccionUsuario">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.direccionUsuario">
+              <MappingFragment StoreEntitySet="direccionUsuario">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="canton" ColumnName="canton" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngestaDiaria">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.IngestaDiaria">
+              <MappingFragment StoreEntitySet="IngestaDiaria">
+                <ScalarProperty Name="idIngesta" ColumnName="idIngesta" />
+                <ScalarProperty Name="nutriente" ColumnName="nutriente" />
+                <ScalarProperty Name="vet" ColumnName="vet" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListaCompras">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.ListaCompras">
+              <MappingFragment StoreEntitySet="ListaCompras">
+                <ScalarProperty Name="idLista" ColumnName="idLista" />
+                <ScalarProperty Name="idAlimento" ColumnName="idAlimento" />
+                <ScalarProperty Name="nutriente" ColumnName="nutriente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nutricionista">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Nutricionista">
+              <MappingFragment StoreEntitySet="Nutricionista">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nutriente">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Nutriente">
+              <MappingFragment StoreEntitySet="Nutriente">
+                <ScalarProperty Name="idNutriente" ColumnName="idNutriente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="ocupacion" ColumnName="ocupacion" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PacientePlanNutricional">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.PacientePlanNutricional">
+              <MappingFragment StoreEntitySet="PacientePlanNutricional">
+                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+                <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="kcal" ColumnName="kcal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Padecimiento">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Padecimiento">
+              <MappingFragment StoreEntitySet="Padecimiento">
+                <ScalarProperty Name="idPadecimiento" ColumnName="idPadecimiento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tratamiento" ColumnName="tratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PadecimientoPaciente">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.PadecimientoPaciente">
+              <MappingFragment StoreEntitySet="PadecimientoPaciente">
+                <ScalarProperty Name="idPadecimiento" ColumnName="idPadecimiento" />
+                <ScalarProperty Name="paciente" ColumnName="paciente" />
+                <ScalarProperty Name="fechaDiagnostico" ColumnName="fechaDiagnostico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanNutricional">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.PlanNutricional">
+              <MappingFragment StoreEntitySet="PlanNutricional">
+                <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+                <ScalarProperty Name="nutricionista" ColumnName="nutricionista" />
+                <ScalarProperty Name="idIngesta" ColumnName="idIngesta" />
+                <ScalarProperty Name="idAlimento" ColumnName="idAlimento" />
+                <ScalarProperty Name="idNutriente" ColumnName="idNutriente" />
+                <ScalarProperty Name="vet" ColumnName="vet" />
+                <ScalarProperty Name="tiempoComida" ColumnName="tiempoComida" />
+                <ScalarProperty Name="porcion" ColumnName="porcion" />
+                <ScalarProperty Name="proposito" ColumnName="proposito" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Progreso">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Progreso">
+              <MappingFragment StoreEntitySet="Progreso">
+                <ScalarProperty Name="idProgreso" ColumnName="idProgreso" />
+                <ScalarProperty Name="paciente" ColumnName="paciente" />
+                <ScalarProperty Name="talla" ColumnName="talla" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="porcentAgua" ColumnName="porcentAgua" />
+                <ScalarProperty Name="porcentMusculo" ColumnName="porcentMusculo" />
+                <ScalarProperty Name="porcentGrasa" ColumnName="porcentGrasa" />
+                <ScalarProperty Name="circunfBraquial" ColumnName="circunfBraquial" />
+                <ScalarProperty Name="circunfPantorrilla" ColumnName="circunfPantorrilla" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recibirConsejo">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.recibirConsejo">
+              <MappingFragment StoreEntitySet="recibirConsejo">
+                <ScalarProperty Name="idConsejo" ColumnName="idConsejo" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="tipoConsejo" ColumnName="tipoConsejo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semana">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.semana">
+              <MappingFragment StoreEntitySet="semana">
+                <ScalarProperty Name="idDia" ColumnName="idDia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tiempoComida">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.tiempoComida">
+              <MappingFragment StoreEntitySet="tiempoComida">
+                <ScalarProperty Name="idTiempoComida" ColumnName="idTiempoComida" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="exped_nutricionalModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

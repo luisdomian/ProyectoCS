@@ -1,0 +1,113 @@
+﻿@model NutriHub.Models.Paciente
+
+@{
+    ViewBag.Title = "Información sobre el paciente";
+}
+
+<h2>Información sobre el paciente</h2>
+
+<div>
+    <h4>Paciente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.LabelFor(model => model.Usuario.nombreUsuario, "Nombre del usuario:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Usuario.nombreUsuario)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Usuario.cedula, "Cédula:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Usuario.cedula)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Usuario.idUsuario, "Identificador interno:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Usuario.idUsuario)
+                </div>
+            </div>
+        </dd>
+
+        @*<dt>
+            @Html.LabelFor(model => model.sexo, "Sexo", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.sexo)
+                </div>
+            </div>
+        </dd>*@
+
+        <dt>
+            @Html.LabelFor(model => model.Usuario.correo, "Correo", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.Usuario.correo)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.ocupacion, "Ocupación:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.ocupacion)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.fechaNacimiento)
+                </div>
+            </div>
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.edad, "Edad:", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
+
+        <dd>
+            <div class="col-md-10">
+                <div class="label">
+                    @Html.DisplayFor(model => model.edad)
+                </div>
+            </div>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.cedula })
+</p>
